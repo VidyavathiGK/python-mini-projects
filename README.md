@@ -1,11 +1,53 @@
-# Number Guessing Game 
+# Python Mini Projects 
 
-This is a simple Python mini project where the user has to guess a randomly generated number between 1 and 100.
+Welcome to my Python Mini Projects repository!
 
-## Features
+This repository contains multiple console-based Python projects created to improve my programming and problem-solving skills.
+
+---
+
+##  Projects Included
+
+###  1. Number Guessing Game
+A simple game where the user guesses a randomly generated number.
+
+**Features:**
 - Random number generation
-- User input handling
 - Loop until correct guess
+- User input handling
 
-## Language Used
-Python 3
+---
+
+###  2. Student Management System
+A console-based system to manage student records.
+
+**Features:**
+- Add Student
+- View Students
+- Search Student by Roll Number
+- Delete Student
+- Data stored using file handling
+
+---
+
+##  Concepts Used
+
+- Functions
+- Loops
+- Conditional Statements
+- File Handling
+- Random Module
+- Modular Programming
+
+---
+
+##  Purpose
+
+- Improve Python fundamentals
+- Build mini real-world projects
+- Practice logic building
+- Prepare for technical interviews
+
+---
+
+More projects will be added soon 
