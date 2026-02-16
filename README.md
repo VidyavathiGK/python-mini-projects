@@ -30,6 +30,11 @@ A console-based system to manage student records.
 
 ---
 
+##  3. ATM Machine Simulation
+- Console-based ATM system
+- Features: PIN verification, Deposit, Withdraw, Balance check
+- Concepts used: Functions, Loops, Conditionals
+
 ##  Concepts Used
 
 - Functions
