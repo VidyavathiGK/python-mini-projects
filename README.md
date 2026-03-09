@@ -35,6 +35,15 @@ A console-based system to manage student records.
 - Features: PIN verification, Deposit, Withdraw, Balance check
 - Concepts used: Functions, Loops, Conditionals
 
+  ---
+  ## 4 .Expense Tracker
+A simple Python program to track daily expenses.
+
+Features:
+- Add expenses
+- View expenses
+- Calculates total spending
+
 ##  Concepts Used
 
 - Functions
