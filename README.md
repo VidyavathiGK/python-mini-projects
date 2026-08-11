@@ -1,4 +1,4 @@
-# Python Mini Projects 
+# Python Mini Projects
 
 Welcome to my Python Mini Projects repository!
 
@@ -6,9 +6,9 @@ This repository contains multiple console-based Python projects created to impro
 
 ---
 
-##  Projects Included
+## Projects Included
 
-###  1. Number Guessing Game
+### 1. Number Guessing Game
 A simple game where the user guesses a randomly generated number.
 
 **Features:**
@@ -18,7 +18,7 @@ A simple game where the user guesses a randomly generated number.
 
 ---
 
-###  2. Student Management System
+### 2. Student Management System
 A console-based system to manage student records.
 
 **Features:**
@@ -30,32 +30,45 @@ A console-based system to manage student records.
 
 ---
 
-##  3. ATM Machine Simulation
+### 3. ATM Machine Simulation
 - Console-based ATM system
 - Features: PIN verification, Deposit, Withdraw, Balance check
 - Concepts used: Functions, Loops, Conditionals
 
-  ---
-  ## 4 .Expense Tracker
+---
+
+### 4. Expense Tracker
 A simple Python program to track daily expenses.
 
-Features:
+**Features:**
 - Add expenses
 - View expenses
 - Calculates total spending
 
-##  Concepts Used
+---
 
+### 5. Hospital Management System
+A console-based system to manage hospital operations.
+
+**Features:**
+- Add and manage patients and doctors with unique IDs
+- Search for patients and doctors
+- Discharge patients
+
+## Concepts Used
+
+- Object-Oriented Programming (Classes and Objects)
 - Functions
 - Loops
 - Conditional Statements
 - File Handling
 - Random Module
 - Modular Programming
+- UUID for unique ID generation
 
 ---
 
-##  Purpose
+## Purpose
 
 - Improve Python fundamentals
 - Build mini real-world projects
@@ -64,4 +77,4 @@ Features:
 
 ---
 
-More projects will be added soon 
+More projects will be added soon.
