@@ -55,6 +55,16 @@ A console-based system to manage hospital operations.
 - Search for patients and doctors
 - Discharge patients
 
+---
+
+### 6. Library Management System
+A console-based system to manage a library's inventory and members.
+
+**Features:**
+- Add books and members
+- Issue and return books
+- View available books and registered members
+
 ## Concepts Used
 
 - Object-Oriented Programming (Classes and Objects)
@@ -65,6 +75,7 @@ A console-based system to manage hospital operations.
 - Random Module
 - Modular Programming
 - UUID for unique ID generation
+- Datetime module for tracking dates
 
 ---
 
