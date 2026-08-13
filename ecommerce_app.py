@@ -8,6 +8,19 @@ def display_products(products):
         print(f"ID: {product_id} | {details['name']} - ₹{details['price']:.2f}")
     print("--------------------------")
 
+def search_products(products):
+    """Allows the user to search for a product by name."""
+    search_term = input("Enter the product name to search for: ").strip().lower()
+    found_products = False
+    print("\n--- Search Results ---")
+    for product_id, details in products.items():
+        if search_term in details['name'].lower():
+            print(f"ID: {product_id} | {details['name']} - ₹{details['price']:.2f}")
+            found_products = True
+    if not found_products:
+        print("No products found matching your search.")
+    print("----------------------")
+
 def add_to_cart(cart, products):
     """Allows the user to add a product to their shopping cart."""
     product_id = input("Enter the ID of the product you want to add to cart: ").strip()
@@ -33,6 +46,39 @@ def add_to_cart(cart, products):
     else:
         print("Product ID not found. Please enter a valid product ID.")
 
+def remove_from_cart(cart):
+    """Allows the user to remove an item from their cart."""
+    if not cart:
+        print("Your cart is already empty.")
+        return
+    
+    product_id = input("Enter the ID of the product to remove from cart: ").strip()
+    if product_id in cart:
+        removed_item = cart.pop(product_id)
+        print(f"'{removed_item['name']}' has been removed from your cart.")
+    else:
+        print("Product not found in your cart.")
+
+def update_cart_quantity(cart):
+    """Allows the user to update the quantity of an item in the cart."""
+    if not cart:
+        print("Your cart is empty.")
+        return
+        
+    product_id = input("Enter the ID of the product to update: ").strip()
+    if product_id in cart:
+        try:
+            new_quantity = int(input(f"Enter new quantity for {cart[product_id]['name']}: "))
+            if new_quantity <= 0:
+                print("Quantity must be positive. To remove an item, use the 'Remove' option.")
+            else:
+                cart[product_id]['quantity'] = new_quantity
+                print(f"Quantity for '{cart[product_id]['name']}' updated to {new_quantity}.")
+        except ValueError:
+            print("Invalid quantity. Please enter a number.")
+    else:
+        print("Product not found in your cart.")
+
 def view_cart(cart):
     """Displays the current items in the shopping cart and the total cost."""
     print("\n--- Your Shopping Cart ---")
@@ -43,7 +89,7 @@ def view_cart(cart):
     total_cost = 0
     for product_id, item in cart.items():
         item_total = item['price'] * item['quantity']
-        print(f"{item['name']} (x{item['quantity']}) - ₹{item['price']:.2f} each | Total: ₹{item_total:.2f}")
+        print(f"ID: {product_id} | {item['name']} (x{item['quantity']}) - ₹{item['price']:.2f} each | Total: ₹{item_total:.2f}")
         total_cost += item_total
     
     print(f"--------------------------")
@@ -85,25 +131,33 @@ def main():
     
     while True:
         print("\n--- Main Menu ---")
-        print("1. Browse Products")
-        print("2. Add Item to Cart")
-        print("3. View Cart")
-        print("4. Checkout")
-        print("5. Exit")
+        print("1. Browse All Products")
+        print("2. Search for a Product")
+        print("3. Add Item to Cart")
+        print("4. View Cart")
+        print("5. Update Item Quantity in Cart")
+        print("6. Remove Item from Cart")
+        print("7. Checkout")
+        print("8. Exit")
         
         choice = input("Enter your choice: ").strip()
         
         if choice == '1':
             display_products(products)
         elif choice == '2':
-            add_to_cart(shopping_cart, products)
+            search_products(products)
         elif choice == '3':
-            view_cart(shopping_cart)
+            add_to_cart(shopping_cart, products)
         elif choice == '4':
-            if checkout(shopping_cart):
-                # Optionally, you could ask if they want to continue shopping after checkout
-                pass 
+            view_cart(shopping_cart)
         elif choice == '5':
+            update_cart_quantity(shopping_cart)
+        elif choice == '6':
+            remove_from_cart(shopping_cart)
+        elif choice == '7':
+            if checkout(shopping_cart):
+                pass 
+        elif choice == '8':
             print("Thank you for shopping with us! Goodbye!")
             break
         else:
