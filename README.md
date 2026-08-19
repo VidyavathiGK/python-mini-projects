@@ -65,15 +65,53 @@ A console-based system to manage a library's inventory and members.
 - Issue and return books
 - View available books and registered members
 
+---
+
+### 7. E-commerce Store Simulation
+A console-based application that mimics a simple online shopping experience.
+
+**Features:**
+- Browse and search for products
+- Add, update, and remove items from a shopping cart
+- View cart and checkout
+
+---
+
+### 8. Simple Contact Book
+A command-line application to manage personal contacts.
+
+**Features:**
+- Add, view, search, update, and delete contacts
+- Stores first name, last name, phone, and email
+
+---
+
+### 9. Quiz Game
+An interactive quiz that asks multiple-choice questions and tracks the score.
+
+**Features:**
+- A predefined list of questions and answers
+- Score tracking and final result display
+
+---
+
+### 10. Offline Weather Simulator
+A fun app that generates a random, simulated weather forecast for any city.
+
+**Features:**
+- Generates a 3-day forecast
+- Uses only built-in libraries (no internet required)
+
 ## Concepts Used
 
 - Object-Oriented Programming (Classes and Objects)
-- Functions
-- Loops
-- Conditional Statements
+- Functions and Modular Programming
+- Loops and Conditional Statements
+- Dictionaries for structured data storage
+- User Input Handling and Validation
+- String Manipulation
 - File Handling
-- Random Module
-- Modular Programming
+- Random Module for simulations
 - UUID for unique ID generation
 - Datetime module for tracking dates
 

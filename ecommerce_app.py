@@ -1,9 +1,29 @@
+import json
+
+CART_FILE = "cart.json"
+
+def save_cart_to_file(cart):
+    """Saves the shopping cart to a JSON file."""
+    try:
+        with open(CART_FILE, 'w') as f:
+            json.dump(cart, f, indent=4)
+    except IOError as e:
+        print(f"Error saving cart to file: {e}")
+
+def load_cart_from_file():
+    """Loads the shopping cart from a JSON file."""
+    try:
+        with open(CART_FILE, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}  # Return an empty cart if the file doesn't exist yet
+    except (IOError, json.JSONDecodeError) as e:
+        print(f"Error loading cart from file: {e}. Starting with an empty cart.")
+        return {}
+
 def display_products(products):
-    """Displays all available products with their IDs, names, and prices."""
+    """Displays all available products."""
     print("\n--- Available Products ---")
-    if not products:
-        print("No products available.")
-        return
     for product_id, details in products.items():
         print(f"ID: {product_id} | {details['name']} - ₹{details['price']:.2f}")
     print("--------------------------")
@@ -22,16 +42,14 @@ def search_products(products):
     print("----------------------")
 
 def add_to_cart(cart, products):
-    """Allows the user to add a product to their shopping cart."""
-    product_id = input("Enter the ID of the product you want to add to cart: ").strip()
-    
+    """Adds a product to the shopping cart."""
+    product_id = input("Enter the ID of the product to add: ").strip()
     if product_id in products:
         try:
             quantity = int(input(f"Enter quantity for {products[product_id]['name']}: "))
             if quantity <= 0:
-                print("Quantity must be a positive number.")
+                print("Quantity must be positive.")
                 return
-            
             if product_id in cart:
                 cart[product_id]['quantity'] += quantity
             else:
@@ -41,74 +59,69 @@ def add_to_cart(cart, products):
                     'quantity': quantity
                 }
             print(f"{quantity} x {products[product_id]['name']} added to cart.")
+            save_cart_to_file(cart)
         except ValueError:
-            print("Invalid quantity. Please enter a number.")
+            print("Invalid quantity.")
     else:
-        print("Product ID not found. Please enter a valid product ID.")
+        print("Product ID not found.")
 
 def remove_from_cart(cart):
-    """Allows the user to remove an item from their cart."""
+    """Removes an item from the cart."""
     if not cart:
         print("Your cart is already empty.")
         return
-    
-    product_id = input("Enter the ID of the product to remove from cart: ").strip()
+    product_id = input("Enter the ID of the product to remove: ").strip()
     if product_id in cart:
         removed_item = cart.pop(product_id)
-        print(f"'{removed_item['name']}' has been removed from your cart.")
+        print(f"'{removed_item['name']}' has been removed.")
+        save_cart_to_file(cart)
     else:
         print("Product not found in your cart.")
 
 def update_cart_quantity(cart):
-    """Allows the user to update the quantity of an item in the cart."""
+    """Updates the quantity of an item in the cart."""
     if not cart:
         print("Your cart is empty.")
         return
-        
     product_id = input("Enter the ID of the product to update: ").strip()
     if product_id in cart:
         try:
             new_quantity = int(input(f"Enter new quantity for {cart[product_id]['name']}: "))
             if new_quantity <= 0:
-                print("Quantity must be positive. To remove an item, use the 'Remove' option.")
+                print("Quantity must be positive. Use 'Remove' to delete.")
             else:
                 cart[product_id]['quantity'] = new_quantity
-                print(f"Quantity for '{cart[product_id]['name']}' updated to {new_quantity}.")
+                print(f"Quantity for '{cart[product_id]['name']}' updated.")
+                save_cart_to_file(cart)
         except ValueError:
-            print("Invalid quantity. Please enter a number.")
+            print("Invalid quantity.")
     else:
         print("Product not found in your cart.")
 
 def view_cart(cart):
-    """Displays the current items in the shopping cart and the total cost."""
+    """Displays the shopping cart."""
     print("\n--- Your Shopping Cart ---")
     if not cart:
         print("Your cart is empty.")
         return
-    
     total_cost = 0
     for product_id, item in cart.items():
         item_total = item['price'] * item['quantity']
-        print(f"ID: {product_id} | {item['name']} (x{item['quantity']}) - ₹{item['price']:.2f} each | Total: ₹{item_total:.2f}")
+        print(f"ID: {product_id} | {item['name']} (x{item['quantity']}) - ₹{item_total:.2f}")
         total_cost += item_total
-    
-    print(f"--------------------------")
-    print(f"Total Cart Value: ₹{total_cost:.2f}")
-    print("--------------------------")
+    print(f"--------------------------\nTotal Cart Value: ₹{total_cost:.2f}")
 
 def checkout(cart):
     """Simulates the checkout process."""
     if not cart:
-        print("Your cart is empty. Nothing to checkout.")
+        print("Your cart is empty.")
         return False
-    
     view_cart(cart)
     confirm = input("Proceed to checkout? (yes/no): ").strip().lower()
-    
     if confirm == 'yes':
-        print("\n--- Checkout Complete! ---")
-        print("Thank you for your purchase!")
-        cart.clear() # Empty the cart after checkout
+        print("\n--- Checkout Complete! Thank you for your purchase! ---")
+        cart.clear()
+        save_cart_to_file(cart)
         return True
     else:
         print("Checkout cancelled.")
@@ -125,9 +138,9 @@ def main():
         'P006': {'name': 'USB Drive 64GB', 'price': 800.00},
     }
     
-    shopping_cart = {}
+    shopping_cart = load_cart_from_file()
     
-    print("--- Welcome to Our Online Store! ---")
+    print("--- Welcome to Our Online Store! (Cart loaded from previous session) ---")
     
     while True:
         print("\n--- Main Menu ---")
@@ -155,8 +168,7 @@ def main():
         elif choice == '6':
             remove_from_cart(shopping_cart)
         elif choice == '7':
-            if checkout(shopping_cart):
-                pass 
+            checkout(shopping_cart)
         elif choice == '8':
             print("Thank you for shopping with us! Goodbye!")
             break
