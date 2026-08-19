@@ -74,6 +74,7 @@ A console-based application that mimics a simple online shopping experience.
 - Browse and search for products
 - Add, update, and remove items from a shopping cart
 - View cart and checkout
+- Save and load cart from a file
 
 ---
 
@@ -102,6 +103,16 @@ A fun app that generates a random, simulated weather forecast for any city.
 - Generates a 3-day forecast
 - Uses only built-in libraries (no internet required)
 
+---
+
+### 11. Rock, Paper, Scissors Game
+A classic game where the user plays against the computer.
+
+**Features:**
+- User input for choice
+- Random computer choice
+- Score tracking
+
 ## Concepts Used
 
 - Object-Oriented Programming (Classes and Objects)
@@ -110,7 +121,7 @@ A fun app that generates a random, simulated weather forecast for any city.
 - Dictionaries for structured data storage
 - User Input Handling and Validation
 - String Manipulation
-- File Handling
+- File Handling (JSON)
 - Random Module for simulations
 - UUID for unique ID generation
 - Datetime module for tracking dates
