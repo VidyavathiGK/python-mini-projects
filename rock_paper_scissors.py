@@ -70,7 +70,7 @@ def main():
     elif computer_score == wins_needed:
         print(f"Sorry, the computer is the champion, winning {computer_score} to {player_score}.")
     else:
-        print("No champion was decided.")
+        print("No champion was Decided.")
         
     print("Thanks for playing!")
 
