@@ -88,7 +88,7 @@ def main():
     while True:
         print("\n--- Main Menu ---")
         print("1. Add a new contact")
-        print("2. View all contacts")
+        print("2. View all the contacts")
         print("3. Search for a contact")
         print("4. Update a contact")
         print("5. Delete a contact")
